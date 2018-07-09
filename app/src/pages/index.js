@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  display: flex;
+`;
+
+export const Sidebar = styled.div`
   width: 320px;
   height: 100vh;
   padding: 30px;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 0px 10px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #FFF;
 `;
 
 export const Form = styled.form`
@@ -40,3 +48,5 @@ export const Header = styled.div`
   border-bottom: 2px solid #eeeeee;
   margin-bottom: 20px;
 `;
+
+export const RepositoryLink = styled.a``;

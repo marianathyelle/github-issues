@@ -1,6 +1,6 @@
-import React from "react";
-import { Repository, RepositoryContent } from "./styles";
-import PropTypes from "prop-types";
+import React from 'react';
+import { Repository, RepositoryContent } from './styles';
+import PropTypes from 'prop-types';
 
 const RepositoriesList = ({ repositories }) => (
   <div>
@@ -13,15 +13,15 @@ const RepositoriesList = ({ repositories }) => (
             <small>{repository.owner.login}</small>
           </div>
         </RepositoryContent>
-        <button type="submit">
+        <div>
           <i className="fa fa-angle-right" />
-        </button>
+        </div>
       </Repository>
     ))}
   </div>
 );
 
-RepositoriesList.PropTypes = {
+RepositoriesList.propTypes = {
   repositories: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

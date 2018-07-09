@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
-export const Repository = styled.div`
+export const Container = styled.div``;
+
+export const Header = styled.div`
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 340px;
+  width: 100vw;
 
   img {
     width: 45px;
@@ -20,9 +24,4 @@ export const Repository = styled.div`
     font-size: 12px;
     color: #999999;
   }
-`;
-
-export const RepositoryContent = styled.div`
-  display: flex;
-  align-items: center;
 `;
