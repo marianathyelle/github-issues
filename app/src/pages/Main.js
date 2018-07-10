@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { Container, Sidebar, Form, Header, RepositoryLink } from './index';
+import React, { Component, Fragment } from 'react';
+import { Sidebar, Form, Header } from './index';
 import RepositoriesList from '../components/RepositoriesList';
+import IssuesListHeader from '../components/IssuesListHeader';
 import IssuesList from '../components/IssuesList';
 import api from '../services/api';
+
 
 export default class Main extends Component {
   state = {
@@ -12,7 +14,6 @@ export default class Main extends Component {
     repositoryError: false,
     repositoryIssues: [],
     issues: [],
-    issuesLink: '',
   };
 
   handleAddRepository = async (e) => {
@@ -26,7 +27,6 @@ export default class Main extends Component {
       this.setState({
         repositoryInput: '',
         repositories: [...this.state.repositories, response.data],
-        issuesLink: response.data.full_name
       });
     } 
     
@@ -39,30 +39,29 @@ export default class Main extends Component {
     }
   };
 
-  handleShowIssues = async (e) => {
-    e.preventDefault();
+  handleShowIssues = async (name) => {
+
+    const repositoryName = this.state.repositories.find(item => item.full_name === name)
 
     try {
-      const response = await api.get(`/repos/${this.state.issuesLink}/issues?state=all`)
-      const repository = await api.get(`/repos/${this.state.issuesLink}`);
+      const response = await api.get(`/repos/${repositoryName.full_name}/issues?state=all`)
+      const repository = await api.get(`/repos/${repositoryName.full_name}`);
+      
 
       this.setState({
-        issues: [ response.data ],
+        issues: response.data,
         repositoryIssues: [ repository.data ]
       })
     }
+    
     catch(err) {
       console.log(err);
-    }
-
-    finally {
-      this.setState({ issuesLink: '' })
     }
   }
 
   render() {
     return (
-      <Container>
+      <Fragment>
         <Sidebar>
           <Header>
             <Form withError={this.state.repositoryError} onSubmit={this.handleAddRepository}>
@@ -78,13 +77,16 @@ export default class Main extends Component {
             </Form>
           </Header>
 
-          <RepositoryLink href={this.state.issuesLink} onClick={this.handleShowIssues}>
-            <RepositoriesList repositories={this.state.repositories} />
-          </RepositoryLink>
+         <RepositoriesList 
+          repositories={this.state.repositories} 
+          showIssues={this.handleShowIssues} 
+        />
+        
         </Sidebar>
 
-        <IssuesList issues={this.state.issues} repositories={this.state.repositoryIssues} />
-      </Container>
+        <IssuesListHeader repositories={this.state.repositoryIssues} />
+        <IssuesList issues={this.state.issues} />
+      </Fragment>
     );
   }
 }

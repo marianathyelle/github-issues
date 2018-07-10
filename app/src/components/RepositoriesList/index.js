@@ -2,10 +2,10 @@ import React from 'react';
 import { Repository, RepositoryContent } from './styles';
 import PropTypes from 'prop-types';
 
-const RepositoriesList = ({ repositories }) => (
+const RepositoriesList = ({ repositories, showIssues }) => (
   <div>
     {repositories.map(repository => (
-      <Repository key={repository.id}>
+      <Repository key={repository.id} type="button" onClick={() => showIssues(repository.full_name)}>
         <RepositoryContent>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <div>

@@ -1,17 +1,21 @@
 import React from 'react';
-import { Container, Header } from './styles'
+import { Container, IssueBox, Content } from './styles';
 
-const IssuesList = ({ repositories, issues }) => (
+const IssuesList = ({ issues }) => (
   <Container>
-    {repositories.map(repositories => (
-      <Header key={repositories.id}>
-        <img src={repositories.owner.avatar_url} alt="react"/>
+    {issues.map(issue => (
+     <IssueBox key={issue.id}>
+      <Content>
+        <img src={issue.user.avatar_url} alt={issue.user.login} />
         <div>
-          <strong>{repositories.owner.login}</strong>
-          <small>{repositories.name}</small>
+          <strong>{issue.title}</strong>
+          <small>{issue.user.login}</small>
+          <a href={issue.html_url} target="_blank"><i className="fa fa-external-link"></i>Abrir Issue</a>
         </div>
-      </Header>
+      </Content>
+     </IssueBox>
     ))}
+    
   </Container>
 )
 

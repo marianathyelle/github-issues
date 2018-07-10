@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  display: flex;
-`;
-
 export const Sidebar = styled.div`
   width: 320px;
   height: 100vh;

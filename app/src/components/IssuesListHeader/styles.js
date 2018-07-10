@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-export const Repository = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  cursor: pointer;
+export const Header = styled.div`
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.2);
+  padding-left: 340px;
+  width: 100vw;
 
   img {
     width: 45px;
@@ -23,7 +21,8 @@ export const Repository = styled.div`
   }
 `;
 
-export const RepositoryContent = styled.div`
+export const RepositoryItem = styled.div`
   display: flex;
   align-items: center;
+  padding: 20px;
 `;
